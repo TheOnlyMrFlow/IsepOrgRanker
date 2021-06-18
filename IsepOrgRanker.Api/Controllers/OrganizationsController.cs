@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using IsepOrgRanker.Api.Model;
-using IsepOrgRanker.Api.Services;
+using IsepOrgRanker.Business.Model;
+using IsepOrgRanker.Business.Services;
 
 namespace IsepOrgRanker.Api.Controllers
 {
@@ -11,9 +11,9 @@ namespace IsepOrgRanker.Api.Controllers
     {
         private readonly OrganizationService _organizationService;
 
-        public OrganizationsController()
+        public OrganizationsController(OrganizationService organizationService)
         {
-            _organizationService = new OrganizationService();
+            _organizationService = organizationService;
         }
 
         [HttpGet]

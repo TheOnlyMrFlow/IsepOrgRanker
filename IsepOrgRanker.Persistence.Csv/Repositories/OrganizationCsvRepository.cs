@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using IsepOrgRanker.Api.Model;
+using IsepOrgRanker.Business.Infra.Persistence.Ports;
+using IsepOrgRanker.Business.Model;
 
-namespace IsepOrgRanker.Api.Repositories
+namespace IsepOrgRanker.Persistence.Csv.Repositories
 {
-    public class OrganizationRepository
+    public class OrganizationCsvRepository : IOrganizationRepository
     {
         private readonly string _organizationsStorageFilePath;
 
-        public OrganizationRepository()
+        public OrganizationCsvRepository()
         {
             _organizationsStorageFilePath = Path.Join(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),

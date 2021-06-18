@@ -1,4 +1,4 @@
-namespace IsepOrgRanker.Api.Model
+namespace IsepOrgRanker.Business.Model
 {
     public class Organization
     {
