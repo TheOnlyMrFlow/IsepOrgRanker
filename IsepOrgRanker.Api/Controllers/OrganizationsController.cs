@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using IsepOrgRanker.Api.Model;
+using IsepOrgRanker.Api.Services;
 
 namespace IsepOrgRanker.Api.Controllers
 {
@@ -11,46 +9,25 @@ namespace IsepOrgRanker.Api.Controllers
     [Route("[controller]")]
     public class OrganizationsController : ControllerBase
     {
-        private readonly string _organizationsStorageFilePath;
+        private readonly OrganizationService _organizationService;
 
         public OrganizationsController()
         {
-            _organizationsStorageFilePath = Path.Join(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "IsepOrgRanker",
-                "orgs.csv");
+            _organizationService = new OrganizationService();
         }
 
         [HttpGet]
         public IEnumerable<Organization> ListOrganizations()
         {
-            return System.IO.File.ReadLines(_organizationsStorageFilePath)
-                .Select(line => line.Split(','))
-                .Select(splitLine => new Organization
-                {
-                    Name = splitLine[0],
-                    Score = int.Parse(splitLine[1])
-                })
-                .OrderByDescending(org => org.Score);
+            return _organizationService.ListOrganizationsByScoreDescending();
         }
 
         [HttpPost]
         [Route("{name}/votes")]
         public IActionResult VoteForOrganization(string name)
         {
-            var organizations = System.IO.File.ReadLines(_organizationsStorageFilePath)
-                .Select(line => line.Split(','))
-                .Select(splitLine => new Organization
-                {
-                    Name = splitLine[0],
-                    Score = int.Parse(splitLine[1])
-                }).ToList();
-
-            organizations.First(org => org.Name == name).Score += 1;
-
-            System.IO.File.WriteAllLines
-                (_organizationsStorageFilePath,
-                organizations.Select(org => string.Join(',', org.Name, org.Score.ToString())));
+            _organizationService.VoteForOrganization(name);
+            
 
             return NoContent();
         }
