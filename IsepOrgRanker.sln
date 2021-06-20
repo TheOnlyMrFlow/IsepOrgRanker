@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsepOrgRanker.Business", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsepOrgRanker.Persistence.Csv", "IsepOrgRanker.Persistence.Csv\IsepOrgRanker.Persistence.Csv.csproj", "{59FF5844-74F3-4214-BF5F-6E00981234B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsepOrgRanker.Persistence.InMemory", "IsepOrgRanker.Persistence.InMemory\IsepOrgRanker.Persistence.InMemory.csproj", "{BA155479-528F-4D79-B2C7-B9BD6AD8F96D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{59FF5844-74F3-4214-BF5F-6E00981234B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59FF5844-74F3-4214-BF5F-6E00981234B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59FF5844-74F3-4214-BF5F-6E00981234B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA155479-528F-4D79-B2C7-B9BD6AD8F96D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA155479-528F-4D79-B2C7-B9BD6AD8F96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA155479-528F-4D79-B2C7-B9BD6AD8F96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA155479-528F-4D79-B2C7-B9BD6AD8F96D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

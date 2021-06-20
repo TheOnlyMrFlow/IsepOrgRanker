@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IsepOrgRanker.Business.Infra.Persistence.Ports;
 using IsepOrgRanker.Business.Services;
+using IsepOrgRanker.Persistence.InMemory.Repositories;
 using IsepOrgRanker.Persistence.Csv.Repositories;
 
 namespace IsepOrgRanker.Api
@@ -28,7 +29,15 @@ namespace IsepOrgRanker.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IOrganizationRepository, OrganizationCsvRepository>();
+
+            if (Configuration["Persistence"] == "csv")
+            {
+                services.AddTransient<IOrganizationRepository, OrganizationCsvRepository>();
+            }
+            else
+            {
+                services.AddSingleton<IOrganizationRepository, OrganizationInMemoryRepository>();
+            }
             services.AddTransient<OrganizationService>();
 
             services.AddControllers();
